@@ -1,4 +1,4 @@
-import type { McpServer } from "mcp-handler";
+import type { McpServer } from "@/types/mcp-server";
 import { z } from "zod";
 import { makeGitHubRequest } from "../../github/client";
 
