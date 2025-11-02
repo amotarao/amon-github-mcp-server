@@ -10,9 +10,7 @@ export function registerGetIdsOfIssuesTool(
     "get_ids_of_issues",
     "Get the internal GitHub issue IDs from multiple issue numbers. Supports batch processing for efficiency.",
     {
-      owner: z
-        .string()
-        .describe("Repository owner (username or organization)"),
+      owner: z.string().describe("Repository owner (username or organization)"),
       repo: z.string().describe("Repository name"),
       issue_numbers: z
         .array(z.number())

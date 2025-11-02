@@ -10,9 +10,7 @@ export function registerRemoveSubIssuesTool(
     "remove_sub_issues",
     "Remove multiple sub-issues from a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
     {
-      owner: z
-        .string()
-        .describe("Repository owner (username or organization)"),
+      owner: z.string().describe("Repository owner (username or organization)"),
       repo: z.string().describe("Repository name"),
       issue_number: z
         .number()

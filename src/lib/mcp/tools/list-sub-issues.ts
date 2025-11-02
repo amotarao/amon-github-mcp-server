@@ -10,9 +10,7 @@ export function registerListSubIssuesTool(
     "list_sub_issues",
     "List sub-issues for a GitHub issue with pagination and filtering support",
     {
-      owner: z
-        .string()
-        .describe("Repository owner (username or organization)"),
+      owner: z.string().describe("Repository owner (username or organization)"),
       repo: z.string().describe("Repository name"),
       issue_number: z
         .number()
@@ -36,15 +34,7 @@ export function registerListSubIssuesTool(
         .optional()
         .describe("Comma-separated list of label names to filter by"),
     },
-    async ({
-      owner,
-      repo,
-      issue_number,
-      per_page,
-      page,
-      state,
-      labels,
-    }) => {
+    async ({ owner, repo, issue_number, per_page, page, state, labels }) => {
       try {
         let endpoint = `/repos/${owner}/${repo}/issues/${issue_number}/sub_issues?per_page=${per_page}&page=${page}`;
 
