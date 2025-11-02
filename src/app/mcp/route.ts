@@ -4,6 +4,8 @@ import {
   registerGetIdOfIssueTool,
   registerGetIdsOfIssuesTool,
   registerGetParentOfSubIssueTool,
+  registerGetProjectItemIdTool,
+  registerListProjectsForIssueTool,
   registerListSubIssuesTool,
   registerRemoveSubIssuesTool,
   registerSetMilestoneForIssuesTool,
@@ -24,6 +26,8 @@ const handler = async (request: Request) => {
       registerAddSubIssuesTool(server, githubToken);
       registerRemoveSubIssuesTool(server, githubToken);
       registerSetMilestoneForIssuesTool(server, githubToken);
+      registerListProjectsForIssueTool(server, githubToken);
+      registerGetProjectItemIdTool(server, githubToken);
     },
     {
       serverInfo: {

@@ -5,3 +5,5 @@ export { registerGetIdsOfIssuesTool } from "./tools/get-ids-of-issues";
 export { registerAddSubIssuesTool } from "./tools/add-sub-issues";
 export { registerRemoveSubIssuesTool } from "./tools/remove-sub-issues";
 export { registerSetMilestoneForIssuesTool } from "./tools/set-milestone-for-issues";
+export { registerListProjectsForIssueTool } from "./tools/list-projects-for-issue";
+export { registerGetProjectItemIdTool } from "./tools/get-project-item-id";
