@@ -1,4 +1,4 @@
-import type { McpServer } from "mcp-handler";
+import type { McpServer } from "@/types/mcp-server";
 import { z } from "zod";
 import { makeGitHubRequest } from "../../github/client";
 
@@ -10,9 +10,7 @@ export function registerGetIdOfIssueTool(
     "get_id_of_issue",
     "Get the internal GitHub issue ID from an issue number",
     {
-      owner: z
-        .string()
-        .describe("Repository owner (username or organization)"),
+      owner: z.string().describe("Repository owner (username or organization)"),
       repo: z.string().describe("Repository name"),
       issue_number: z.number().describe("Issue number to get the ID for"),
     },

@@ -1,4 +1,4 @@
-import type { McpServer } from "mcp-handler";
+import type { McpServer } from "@/types/mcp-server";
 import { z } from "zod";
 import { GITHUB_API_BASE, USER_AGENT } from "../../github/client";
 
@@ -10,9 +10,7 @@ export function registerAddSubIssuesTool(
     "add_sub_issues",
     "Add multiple sub-issues to a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
     {
-      owner: z
-        .string()
-        .describe("Repository owner (username or organization)"),
+      owner: z.string().describe("Repository owner (username or organization)"),
       repo: z.string().describe("Repository name"),
       issue_number: z
         .number()
@@ -30,13 +28,7 @@ export function registerAddSubIssuesTool(
           "When true, replaces the current parent issue for each sub-issue",
         ),
     },
-    async ({
-      owner,
-      repo,
-      issue_number,
-      sub_issue_ids,
-      replace_parent,
-    }) => {
+    async ({ owner, repo, issue_number, sub_issue_ids, replace_parent }) => {
       if (!sub_issue_ids || sub_issue_ids.length === 0) {
         return {
           content: [

@@ -1,4 +1,3 @@
-import { createMcpHandler } from "mcp-handler";
 import {
   registerAddSubIssuesTool,
   registerGetIdOfIssueTool,
@@ -8,6 +7,7 @@ import {
   registerRemoveSubIssuesTool,
   registerSetMilestoneForIssuesTool,
 } from "@/lib/mcp";
+import { createMcpHandler } from "mcp-handler";
 
 const handler = async (request: Request) => {
   const githubTokenHeader = request.headers.get("X-GITHUB-TOKEN");
