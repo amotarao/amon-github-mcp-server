@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "@types/node": "^24.9.2",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.0",
     "eslint-config-next": "15.5.4",
     "prettier": "^3.0.0",
