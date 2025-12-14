@@ -4,9 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "zod"
+        update-types: ["version-update:semver-major"]
     groups:
       react:
         patterns:
@@ -18,7 +19,3 @@ updates:
         patterns:
           - "next"
           - "eslint-config-next"
-    open-pull-requests-limit: 5
-    ignore:
-      - dependency-name: "zod"
-        update-types: ["version-update:semver-major"]
