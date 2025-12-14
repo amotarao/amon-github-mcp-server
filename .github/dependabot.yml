@@ -8,6 +8,8 @@ updates:
     ignore:
       - dependency-name: "zod"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       react:
         patterns:
