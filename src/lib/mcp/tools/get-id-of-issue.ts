@@ -1,5 +1,5 @@
 import type { McpServer } from "@/types/mcp-server";
-import { z } from "zod";
+import * as z from "zod/v4";
 import { makeGitHubRequest } from "../../github/client";
 
 export function registerGetIdOfIssueTool(
