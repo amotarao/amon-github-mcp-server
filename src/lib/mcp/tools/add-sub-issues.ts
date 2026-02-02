@@ -6,27 +6,32 @@ export function registerAddSubIssuesTool(
   server: McpServer,
   githubToken?: string,
 ) {
-  server.tool(
+  server.registerTool(
     "add_sub_issues",
-    "Add multiple sub-issues to a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
     {
-      owner: z.string().describe("Repository owner (username or organization)"),
-      repo: z.string().describe("Repository name"),
-      issue_number: z
-        .number()
-        .describe("Parent issue number to add sub-issues to"),
-      sub_issue_ids: z
-        .array(z.number())
-        .describe(
-          "Array of sub-issue IDs to add to the parent issue. These must be internal GitHub issue IDs, not issue numbers.",
-        ),
-      replace_parent: z
-        .boolean()
-        .optional()
-        .default(false)
-        .describe(
-          "When true, replaces the current parent issue for each sub-issue",
-        ),
+      description:
+        "Add multiple sub-issues to a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
+      inputSchema: {
+        owner: z
+          .string()
+          .describe("Repository owner (username or organization)"),
+        repo: z.string().describe("Repository name"),
+        issue_number: z
+          .number()
+          .describe("Parent issue number to add sub-issues to"),
+        sub_issue_ids: z
+          .array(z.number())
+          .describe(
+            "Array of sub-issue IDs to add to the parent issue. These must be internal GitHub issue IDs, not issue numbers.",
+          ),
+        replace_parent: z
+          .boolean()
+          .optional()
+          .default(false)
+          .describe(
+            "When true, replaces the current parent issue for each sub-issue",
+          ),
+      },
     },
     async ({ owner, repo, issue_number, sub_issue_ids, replace_parent }) => {
       if (!sub_issue_ids || sub_issue_ids.length === 0) {
