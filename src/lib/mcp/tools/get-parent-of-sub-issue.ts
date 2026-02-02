@@ -6,13 +6,18 @@ export function registerGetParentOfSubIssueTool(
   server: McpServer,
   githubToken?: string,
 ) {
-  server.tool(
+  server.registerTool(
     "get_parent_of_sub_issue",
-    "Get the parent issue of a sub-issue using GitHub Sub-Issues API",
     {
-      owner: z.string().describe("Repository owner (username or organization)"),
-      repo: z.string().describe("Repository name"),
-      issue_number: z.number().describe("Sub-issue number to get parent for"),
+      description:
+        "Get the parent issue of a sub-issue using GitHub Sub-Issues API",
+      inputSchema: {
+        owner: z
+          .string()
+          .describe("Repository owner (username or organization)"),
+        repo: z.string().describe("Repository name"),
+        issue_number: z.number().describe("Sub-issue number to get parent for"),
+      },
     },
     async ({ owner, repo, issue_number }) => {
       try {

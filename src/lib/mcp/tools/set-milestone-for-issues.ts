@@ -6,21 +6,26 @@ export function registerSetMilestoneForIssuesTool(
   server: McpServer,
   githubToken?: string,
 ) {
-  server.tool(
+  server.registerTool(
     "set_milestone_for_issues",
-    "Set milestone for multiple GitHub issues. Supports batch processing for efficiency.",
     {
-      owner: z.string().describe("Repository owner (username or organization)"),
-      repo: z.string().describe("Repository name"),
-      issue_numbers: z
-        .array(z.number())
-        .describe("Array of issue numbers to update"),
-      milestone_number: z
-        .number()
-        .nullable()
-        .describe(
-          "Milestone number to set, or null to remove milestone from issues",
-        ),
+      description:
+        "Set milestone for multiple GitHub issues. Supports batch processing for efficiency.",
+      inputSchema: {
+        owner: z
+          .string()
+          .describe("Repository owner (username or organization)"),
+        repo: z.string().describe("Repository name"),
+        issue_numbers: z
+          .array(z.number())
+          .describe("Array of issue numbers to update"),
+        milestone_number: z
+          .number()
+          .nullable()
+          .describe(
+            "Milestone number to set, or null to remove milestone from issues",
+          ),
+      },
     },
     async ({ owner, repo, issue_numbers, milestone_number }) => {
       if (!issue_numbers || issue_numbers.length === 0) {

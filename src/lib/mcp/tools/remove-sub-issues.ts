@@ -6,20 +6,25 @@ export function registerRemoveSubIssuesTool(
   server: McpServer,
   githubToken?: string,
 ) {
-  server.tool(
+  server.registerTool(
     "remove_sub_issues",
-    "Remove multiple sub-issues from a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
     {
-      owner: z.string().describe("Repository owner (username or organization)"),
-      repo: z.string().describe("Repository name"),
-      issue_number: z
-        .number()
-        .describe("Parent issue number to remove sub-issues from"),
-      sub_issue_ids: z
-        .array(z.number())
-        .describe(
-          "Array of sub-issue IDs to remove from the parent issue. These must be internal GitHub issue IDs, not issue numbers.",
-        ),
+      description:
+        "Remove multiple sub-issues from a GitHub issue using GitHub Sub-Issues API. Supports batch processing for efficiency.",
+      inputSchema: {
+        owner: z
+          .string()
+          .describe("Repository owner (username or organization)"),
+        repo: z.string().describe("Repository name"),
+        issue_number: z
+          .number()
+          .describe("Parent issue number to remove sub-issues from"),
+        sub_issue_ids: z
+          .array(z.number())
+          .describe(
+            "Array of sub-issue IDs to remove from the parent issue. These must be internal GitHub issue IDs, not issue numbers.",
+          ),
+      },
     },
     async ({ owner, repo, issue_number, sub_issue_ids }) => {
       if (!sub_issue_ids || sub_issue_ids.length === 0) {

@@ -6,15 +6,20 @@ export function registerGetIdsOfIssuesTool(
   server: McpServer,
   githubToken?: string,
 ) {
-  server.tool(
+  server.registerTool(
     "get_ids_of_issues",
-    "Get the internal GitHub issue IDs from multiple issue numbers. Supports batch processing for efficiency.",
     {
-      owner: z.string().describe("Repository owner (username or organization)"),
-      repo: z.string().describe("Repository name"),
-      issue_numbers: z
-        .array(z.number())
-        .describe("Array of issue numbers to get the IDs for"),
+      description:
+        "Get the internal GitHub issue IDs from multiple issue numbers. Supports batch processing for efficiency.",
+      inputSchema: {
+        owner: z
+          .string()
+          .describe("Repository owner (username or organization)"),
+        repo: z.string().describe("Repository name"),
+        issue_numbers: z
+          .array(z.number())
+          .describe("Array of issue numbers to get the IDs for"),
+      },
     },
     async ({ owner, repo, issue_numbers }) => {
       if (!issue_numbers || issue_numbers.length === 0) {
